@@ -1,0 +1,8 @@
+venv/
+.idea/
+
+input/
+output/
+
+*.rar
+*.log
