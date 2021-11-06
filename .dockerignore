@@ -1,0 +1,16 @@
+venv/
+.idea/
+.git/
+.gitignore
+
+input/
+output/
+tmp/
+
+*.rar
+*.log
+*.md
+*.ini
+
+Dockerfile
+*.yml
