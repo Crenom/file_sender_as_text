@@ -6,5 +6,5 @@ services:
     ports:
      - "80:5000"
     volumes:
-     - /home/ubuntu/getter-pusher/output/:/app/output
-     - /home/ubuntu/getter-pusher/input/:/app/input
+     - ./output/:/app/output
+     - ./input/:/app/input
