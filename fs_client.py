@@ -1,5 +1,5 @@
 import requests
-from engine import encoder_decoder
+from engine import encoder_decoder, files_and_folders
 from json import dumps
 import os
 from time import sleep
@@ -8,6 +8,10 @@ import configparser
 
 input_folder = "input"
 output_folder = "output"
+
+# создание папок
+files_and_folders.create_folder_if_not_exist(output_folder)
+files_and_folders.create_folder_if_not_exist(input_folder)
 
 config = configparser.ConfigParser()
 config.read('config.ini')

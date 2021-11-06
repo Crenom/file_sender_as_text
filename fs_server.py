@@ -5,7 +5,7 @@ import re
 
 from flask import Flask, request, jsonify
 
-from engine import encoder_decoder
+from engine import encoder_decoder, files_and_folders
 
 # https://flask-russian-docs.readthedocs.io/ru/latest/quickstart.html
 # http://blog.luisrei.com/articles/flaskrest.html
@@ -14,6 +14,11 @@ app = Flask(__name__)
 output_folder = "output"  # сюда попадает файл
 input_folder = "input"  # отсюда берём файлы для передачи
 tmp_folder = "tmp"  # сюда конвертируются файлы в base64
+
+# создание дирректорий
+files_and_folders.create_folder_if_not_exist(output_folder)
+files_and_folders.create_folder_if_not_exist(input_folder)
+files_and_folders.create_folder_if_not_exist(tmp_folder)
 
 chunk_size = 102400  # на сколько байт бьём файл
 
