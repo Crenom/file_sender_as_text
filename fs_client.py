@@ -30,7 +30,7 @@ def __read_in_chunks__(file_object, chunk_size=1024):
 def send_file_to_server(file_name, link):
     full_file_name = os.path.join(input_folder, file_name)
 
-    chunk_size = 102400  # на сколько байт бьём файл
+    chunk_size = int(config['DEFAULT']['ChunkSize'])  # на сколько байт бьём файл
     # посчитаем сколько всего частей файла
     chunks = 0
     with open(full_file_name, 'rb') as f:
@@ -140,17 +140,8 @@ def get_file_from_server(file_name, link):
 
 if __name__ == "__main__":
     server = config['DEFAULT']['ServerAddress']
-    # f_list = [  # 'm1.rar',
-    #     'erdnt.7z'
-    # ]
-    # for file_n in f_list:
-    #     print(f'started - {file_n}')
-    #     get_file_from_server(file_n, server)
-    #     print(f'fineshed - {file_n}')
-    #     sleep(1)
-    # print('123')
 
-    # send_file_to_server('bbb.rar', server)
+    send_file_to_server('aaa.rar', server)
     # part_of_part = __get_part_of_part__('aaa.rar', server, 31)
-    get_file_from_server('aaa.rar', server)
+    # get_file_from_server('aaa.rar', server)
     print('123')
