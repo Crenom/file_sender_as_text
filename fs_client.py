@@ -103,15 +103,13 @@ def get_file_from_server(file_name, link):
 
     # получаем файл по частям
     full_file_name = os.path.join(output_folder, file_name)
-    base64_string = ''
     for i in range(int(chunks)):
         part = i + 1
         part_link = f'{link}/get/{file_name}/{part}'
         response = requests.get(part_link, verify=False)
         status_code = response.status_code
 
-        if status_code == 200:
-            base64_string = response.text
+        base64_string = ''
 
         while status_code != 200:
             print(f'error: file_name={file_name}, part={part}, status_code={response.status_code}')
@@ -122,9 +120,12 @@ def get_file_from_server(file_name, link):
             status_code = response.status_code
             if status_code == 403:
                 base64_string = __get_part_of_part__(file_name, link, part)
-                status_code = 200
+                break
 
         if status_code == 200:
+            base64_string = response.text
+
+        if base64_string != '':
             byte_content = encoder_decoder.base64_string_to_byte_content(base64_string)
             if part == 1:
                 with open(full_file_name, "wb") as file:
