@@ -81,6 +81,15 @@ def __get_part_of_part__(file_name, link, part):
         response = requests.get(part_of_part_link, verify=False)
         status_code = response.status_code
 
+        if status_code == 403:
+            sleep(3)
+            get_request_with_ntlm()
+            sleep(2)
+            response = requests.get(part_of_part_link, verify=False)
+            status_code = response.status_code
+            if status_code == 403:
+                input('Error!')
+
         if status_code == 404:
             break
 
